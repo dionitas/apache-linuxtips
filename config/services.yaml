@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: apache-linuxtips
+    run: apache
+  name: linuxtips
+  namespace: linuxtips
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - nodePort: 32555
+    name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: apache-linuxtips
+  sessionAffinity: None
+  type: NodePort
